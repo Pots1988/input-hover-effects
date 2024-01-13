@@ -1,0 +1,143 @@
+:root {
+  --bg: #F8FFDB;
+  --border-color: #BFBDC1;
+  --color: #6D6A75;
+  --color-input: #5D576B;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  padding: 2rem;
+  display: grid;
+  place-content: center;
+  gap: 2rem;
+  row-gap: 4rem;
+  background: var(--bg);
+  font: 2.5rem/1.2 'Fira Sans', sans-serif;
+  color: var(--color);
+  height: 100vh;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  font: 400 6rem/1.1 'Bungee Spice', sans-serif;
+  text-align: center;
+  margin: 0 0 0.7em;
+}
+
+.header__word {
+  display: flex;
+  justify-content: center;
+}
+
+.header span {
+  animation: slide 2s linear infinite alternate;
+}
+
+.header span:nth-child(odd) {
+  animation-direction: alternate-reverse;
+}
+
+@keyframes slide {
+  0% {
+    transform: translateY(-0.1em);
+  }
+
+  45%,
+  55% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(0.1em);
+  }
+}
+
+.mr-1 {
+  margin-right: 0.6em;
+}
+
+.d-flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.input {
+  position: relative;
+  width: 100%;
+  max-width: 12em;
+  font-size: 2.5rem;
+  display: flex;
+  --padding-x: 0.2em;
+}
+
+.input__field {
+  background: none;
+  border: 0;
+  border-bottom: 2px solid var(--border-color);
+  color: var(--color-input);
+  width: 100%;
+  font: inherit;
+  font-weight: 700;
+  outline: none;
+  padding: 0.8em var(--padding-x) 0.3em;
+}
+
+.input__label::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  height: 0.15em;
+  left: 0;
+  width: 0;
+  transition: width 0.3s;
+}
+
+.input--1 .input__label::after {
+  background: #00FFD1;
+}
+
+.input--2 .input__label::after {
+  background: #FF6464;
+}
+
+.input--3 .input__label::after {
+  background: #7900FF;
+}
+
+.input__text {
+  position: absolute;
+  left: 0;
+  pointer-events: none;
+  font-size: 85%;
+  line-height: 1;
+  padding: 0 var(--padding-x);
+  transform: translateY(1.1em);
+  transition: all 0.3s;
+}
+
+.input__field:focus ~ .input__label .input__text,
+.input__field:not(:placeholder-shown) ~ .input__label .input__text {
+  transform: translateY(0);
+  font-size: 60%;
+  font-weight: 700;
+}
+
+.input__field:focus ~ .input__label::after,
+.input__field:not(:placeholder-shown) ~ .input__label::after {
+  width: 100%
+}
